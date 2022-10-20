@@ -1,6 +1,6 @@
 # simple-digital-clock
 
-###Usage
+### Usage
 ```
 git clone https://github.com/kevinnvm/simple-digital-clock.git
 ```
