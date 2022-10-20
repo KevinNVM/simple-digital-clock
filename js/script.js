@@ -75,10 +75,10 @@ const draw = () => {
   intervalID = setInterval(() => {
     if (format.showMeridiem)
       currTime = `${hours > 12 ? "AM " : "PM "}` + currTime;
-    if (format.showDay) format.date = "day hh:mm:ss";
+    if (format.showDay) format.date = "day " + format.date;
     time.innerText = currTime;
     dateEl.innerText = currDate;
-  }, 10);
+  }, 200);
 };
 
 //
