@@ -34,6 +34,7 @@ let seconds = (param) => {
 let miliseconds = () => date.getMilliseconds();
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+let day = () => return days[date.getDay() - 1];
 var dd = String(date.getDate()).padStart(2, '0');
 var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = date.getFullYear();
@@ -44,13 +45,13 @@ var yy = yyyy.toString().slice(-2);
 setInterval(() => {
     date.setSeconds(date.getSeconds() + 1);
     currTime = format.timeDivider.replace(/hh/g, hours()).replace(/mm/g, minutes()).replace(/ss/g, seconds());
-    currDate = format.date.replace(/dd/g, dd).replace(/mm/g, mm).replace(/yyyy/g, yyyy).replace(/yy/g, yy)
+    currDate = format.date.replace(/dd/g, dd).replace(/mm/g, mm).replace(/yyyy/g, yyyy).replace(/yy/g, yy).replace(/day/g, day);
 }, 1000);
 
 const draw = () => {
     intervalID = setInterval(() => { 
         if (format.showMeridiem) currTime = `${(hours > 12 ? "AM " : "PM ")}` + currTime;
-        if (format.showDay) currDate = days[date.getDay() - 1] + ` ${currDate}`
+        if (format.showDay) format.date = 'day hh:mm:ss';
         time.innerText = currTime;
         dateEl.innerText = currDate;
     }, 10)
