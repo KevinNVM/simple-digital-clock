@@ -8,7 +8,7 @@ let format = {
   date: "dd/mm/yyyy",
   timeDivider: "hh:mm:ss",
   showMeridiem: false,
-  showDay: false,
+  showDay: true,
 };
 let hours = (param) => {
   let t = param || date.getHours();
