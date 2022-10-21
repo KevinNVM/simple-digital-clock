@@ -3,13 +3,18 @@ const version = "0.1";
 const time = document.querySelector("#time");
 const dateEl = document.querySelector("#date");
 const date = new Date();
-let format = {
-  time: "12",
-  date: "dd/mm/yyyy",
-  timeDivider: "hh:mm:ss",
-  showMeridiem: false,
-  showDay: true,
-};
+let format = localStorage.getItem("format")
+  ? JSON.parse(localStorage.getItem("format"))
+  : localStorage.setItem(
+      "format",
+      JSON.stringify({
+        time: "12",
+        date: "dd/mm/yyyy",
+        timeDivider: "hh:mm:ss",
+        showMeridiem: false,
+        showDay: false,
+      })
+    );
 let hours = (param) => {
   let t = param || date.getHours();
   if (format.time == "12") {
@@ -47,7 +52,7 @@ const months = [
   "December",
 ];
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-let dayFN = () => {
+let day = () => {
   return days[date.getDay() - 1];
 };
 var dd = String(date.getDate()).padStart(2, "0");
@@ -62,16 +67,22 @@ setInterval(() => {
   currTime = format.timeDivider
     .replace(/hh/g, hours())
     .replace(/mm/g, minutes())
-    .replace(/ss/g, seconds());
+    .replace(/ss/g, seconds())
+    .replace(/M/g, hours > 12 ? "AM " : "PM ");
   currDate = format.date
     .replace(/dd/g, dd)
     .replace(/mm/g, mm)
     .replace(/yyyy/g, yyyy)
     .replace(/yy/g, yy)
-    .replace(/day/g, dayFN);
-    if (format.showMeridiem)
-      currTime = `${hours > 12 ? "AM " : "PM "}` + currTime;
-    if (format.showDay) format.date = "day " + format.date;
+    .replace(/day/g, day);
+  if (format.showMeridiem)
+    setFormat({
+      formatTimeDivider: "M hh:mm:ss",
+    });
+  if (format.showDay)
+    setFormat({
+      formatDate: "DAY dd/mm/yyyy",
+    });
 }, 1000);
 
 const draw = () => {
