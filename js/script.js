@@ -1,4 +1,4 @@
-var logStart = performance.now();
+const logStart = performance.now();
 const version = "0.1";
 const time = document.querySelector("#time");
 const dateEl = document.querySelector("#date");
@@ -148,10 +148,11 @@ function start() {
 
 setFontSize(2, 8);
 start();
+
+const logStop = performance.now();
 setTimeout(() => {
   console.clear();
-  var logStop = performance.now();
-  console.log(`Content Loaded (${((logStop - logStart) / 1000).toFixed(1)}s)`);
+  console.log(`Content Loaded (${(logStop - logStart).toFixed(2)}ms)`);
   console.log(
     `Simple Digital Clock v${version}🕒\nBuilt With ❤️ By Kevin\nhttps://github.com/kevinnvm`
   );
