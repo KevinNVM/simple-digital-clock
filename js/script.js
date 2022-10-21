@@ -71,7 +71,7 @@ setInterval(() => {
     .replace(/hh/g, hours())
     .replace(/mm/g, minutes())
     .replace(/ss/g, seconds())
-    .replace(/M/g, format.showMeridiem ? (hours > 12 ? "AM" : "PM") : "");
+    .replace(/M/g, hours > 12 ? "AM" : "PM");
   currDate = format.date
     .replace(/dd/g, dd)
     .replace(/mm/g, mm)
