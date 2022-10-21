@@ -47,7 +47,7 @@ const months = [
   "December",
 ];
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-let day = () => {
+let dayFN = () => {
   return days[date.getDay() - 1];
 };
 var dd = String(date.getDate()).padStart(2, "0");
@@ -68,7 +68,7 @@ setInterval(() => {
     .replace(/mm/g, mm)
     .replace(/yyyy/g, yyyy)
     .replace(/yy/g, yy)
-    .replace(/day/, day);
+    .replace(/day/g, dayFN);
 }, 1000);
 
 const draw = () => {
