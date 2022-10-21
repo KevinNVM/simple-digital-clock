@@ -80,6 +80,7 @@ setInterval(() => {
 const draw = () => {
   intervalID = setInterval(() => {
     if (currDate || currTime) {
+      clearInterval(dots);
       time.innerText = currTime;
       dateEl.innerText = currDate;
     } else {
