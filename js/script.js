@@ -60,6 +60,9 @@ var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
 var yyyy = date.getFullYear();
 var yy = yyyy.toString().slice(-2);
 
+let currDate;
+let currTime;
+
 //
 
 setInterval(() => {
@@ -68,7 +71,7 @@ setInterval(() => {
     .replace(/hh/g, hours())
     .replace(/mm/g, minutes())
     .replace(/ss/g, seconds())
-    .replace(/M/g, hours > 12 ? "AM " : "PM ");
+    .replace(/M/g, hours > 12 ? "AM" : "PM");
   currDate = format.date
     .replace(/dd/g, dd)
     .replace(/mm/g, mm)
