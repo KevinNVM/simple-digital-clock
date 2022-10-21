@@ -11,10 +11,9 @@ let format = localStorage.getItem("SimpleDigitalClock_FORMAT")
         time: "12",
         date: "dd/mm/yyyy",
         timeDivider: "hh:mm:ss",
-        showMeridiem: false,
-        showDay: false,
       })
     );
+
 let hours = (param) => {
   let t = param || date.getHours();
   if (format.time == "12") {
@@ -80,12 +79,18 @@ setInterval(() => {
     .replace(/DAY/g, day);
   if (format.showMeridiem) format.timeDivider = "M hh:mm:ss";
   if (format.showDay) format.date = "DAY dd/mm/yyyy";
+  if (format) addEventListener;
 }, 1000);
 
 const draw = () => {
   intervalID = setInterval(() => {
-    time.innerText = currTime;
-    dateEl.innerText = currDate;
+    if (currDate || currTime) {
+      time.innerText = currTime;
+      dateEl.innerText = currDate;
+    } else {
+      time.innerText = `v${version}`;
+      dateEl.innerText = "Starting Clock..";
+    }
   }, 200);
 };
 
