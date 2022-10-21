@@ -3,10 +3,10 @@ const version = "0.1";
 const time = document.querySelector("#time");
 const dateEl = document.querySelector("#date");
 const date = new Date();
-let format = localStorage.getItem("format")
-  ? JSON.parse(localStorage.getItem("format"))
+let format = localStorage.getItem("SimpleDigitalClock_FORMAT")
+  ? JSON.parse(localStorage.getItem("SimpleDigitalClock_FORMAT"))
   : localStorage.setItem(
-      "format",
+      "SimpleDigitalClock_FORMAT",
       JSON.stringify({
         time: "12",
         date: "dd/mm/yyyy",
@@ -71,21 +71,15 @@ setInterval(() => {
     .replace(/hh/g, hours())
     .replace(/mm/g, minutes())
     .replace(/ss/g, seconds())
-    .replace(/M/g, hours > 12 ? "AM" : "PM");
+    .replace(/M/g, format.showMeridiem ? (hours > 12 ? "AM" : "PM") : "");
   currDate = format.date
     .replace(/dd/g, dd)
     .replace(/mm/g, mm)
     .replace(/yyyy/g, yyyy)
     .replace(/yy/g, yy)
-    .replace(/day/g, day);
-  if (format.showMeridiem)
-    setFormat({
-      formatTimeDivider: "M hh:mm:ss",
-    });
-  if (format.showDay)
-    setFormat({
-      formatDate: "DAY dd/mm/yyyy",
-    });
+    .replace(/DAY/g, day);
+  if (format.showMeridiem) format.timeDivider = "M hh:mm:ss";
+  if (format.showDay) format.date = "DAY dd/mm/yyyy";
 }, 1000);
 
 const draw = () => {
