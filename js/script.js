@@ -80,12 +80,10 @@ setInterval(() => {
 const draw = () => {
   intervalID = setInterval(() => {
     if (currDate || currTime) {
-      clearInterval(dots);
       time.innerText = currTime;
       dateEl.innerText = currDate;
     } else {
       time.innerText = `v${version}`;
-      dateEl.innerHTML = 'Starting Clock<span id="wait">.</span>';
     }
   }, 200);
 };
@@ -158,9 +156,3 @@ setTimeout(() => {
     `Simple Digital Clock v${version}🕒\nBuilt With ❤️ By Kevin\nhttps://github.com/kevinnvm`
   );
 }, 1500);
-
-var dots = window.setInterval(function () {
-  var wait = document.getElementById("wait");
-  if (Math.random() < 0.7) wait.innerHTML += ".";
-  else wait.innerHTML = wait.innerHTML.substring(1, wait.innerHTML.length);
-}, 125);
