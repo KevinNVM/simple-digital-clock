@@ -69,13 +69,13 @@ setInterval(() => {
     .replace(/yyyy/g, yyyy)
     .replace(/yy/g, yy)
     .replace(/day/g, dayFN);
+    if (format.showMeridiem)
+      currTime = `${hours > 12 ? "AM " : "PM "}` + currTime;
+    if (format.showDay) format.date = "day " + format.date;
 }, 1000);
 
 const draw = () => {
   intervalID = setInterval(() => {
-    if (format.showMeridiem)
-      currTime = `${hours > 12 ? "AM " : "PM "}` + currTime;
-    if (format.showDay) format.date = "day " + format.date;
     time.innerText = currTime;
     dateEl.innerText = currDate;
   }, 200);
