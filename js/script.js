@@ -68,7 +68,7 @@ setInterval(() => {
     .replace(/mm/g, mm)
     .replace(/yyyy/g, yyyy)
     .replace(/yy/g, yy)
-    .replace(/day/g, day);
+    .replace(/day/, day);
 }, 1000);
 
 const draw = () => {
